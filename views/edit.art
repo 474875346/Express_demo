@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>添加学生</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h3>添加学生</h3>
+        <form method="post" action="/edit?id={{@ student._id}}">
+            <div class="form-group">
+                <label>学生姓名</label>
+                <input name="name" type="text" value="{{@ student.name}}" class="form-control" placeholder="请填写学生姓名">
+            </div>
+            <div class="form-group" action>
+                <label>年龄</label>
+                <input name="age" type="text" value="{{@ student.age}}" class="form-control" placeholder="请输入年龄">
+            </div>
+            <div class="form-group">
+                <label>邮箱</label>
+                <input name="email" type="text" value="{{@ student.email}}" class="form-control" placeholder="请填写邮箱">
+            </div>
+            <div class="form-group">
+                <label>请选择课程</label>
+                <div>
+                {{each courses value i}}
+                    {{if coursesChecked[i]}}
+                        <label class="checkbox-inline">
+                            <input name="courses" checked type="checkbox" value="{{@ value}}"> {{value}}
+                        </label>
+                    {{else if coursesChecked[i] == false}}
+                        <label class="checkbox-inline">
+                            <input name="courses" type="checkbox" value="{{@ value}}"> {{value}}
+                        </label>
+                    {{/if}}
+                {{/each}}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">确认修改</button>
+        </form>
+    </div>
+</body>
+
+</html>
